@@ -6,17 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
-    //
-    protected $table='providers';
-    protected $primarykey='id';
-    public $timestamps=true;
-
-    protected $fillable=[
-    	'status',
-    	'ruc',
-    	'name',
-    	'address',
-        ];
-
-        protected $guarded = [];
+    
+protected $table = 'providers';
+protected $primaryKey='id';
+public $timestamps = false;
+protected $fillable = ['ruc', 'name', 'address'];
+protected $guarded = [];
 }
+

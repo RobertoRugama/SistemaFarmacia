@@ -24,12 +24,20 @@ class ProviderFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'ruc'=>'required|max:20',
-        'name'=>'required|max:50',
-        'address'=>'required|max:250',
+        'ruc'=>'required|max:14',
+        'name'=>'max:30',
+        'address'=>'max:250',
 
             //
 
         ];
     }
+
+    public function messages(){
+     return [
+         'ruc' => 'este campo debe ser solo numerico',
+         'name.min' => 'porfavor verifique el campo',
+         'address.max' => 'El campo title no puede tener más de 255 carácteres',
+     ];
+ }
 }

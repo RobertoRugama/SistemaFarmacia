@@ -14,7 +14,7 @@
                     @endif
                        <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                            <h3>Listado de Proveedores <a href="provider/create"><button class="btn btn-success">Nuevo</button></a></h3>
+                            <h3>Listado de Proveedores <a href="{{ route('provider.create') }}"><button class="btn btn-success">Nuevo</button></a></h3>
                             @include('provider.search')
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -25,7 +25,7 @@
                                                 <th>ruc</th>
                                                 <th>nombre</th>
                                                 <th>direccion</th> 
-                                                <th>Opciones</th>   
+                                                <th width="250px">Opciones</th>   
                                             </thead>
                                             @foreach($providers as $p)
                                             <tr>
@@ -36,9 +36,11 @@
                                                 <td>{{$p->name}}</td>
                                                 <td>{{$p->address}}</td>
                                                 <td>    
-                                                    <a href=""><button class="btn btn-info">Editar</button></a>
-
-                                                    <a href=""><button class="btn btn-danger">Eliminar</button></a>
+                                                    <a href="{{ URL::action('ProviderController@edit',$p->id)}}"><button class="btn btn-primary">Editar</button></a>
+                                                 {!! Form::open(['method' => 'DELETE','route' => ['provider.destroy', $p->id],'style'=>'display:inline']) !!}
+                                                   {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                                   @include('provider.message')
+                                                  {!! Form::close() !!}
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -52,5 +54,6 @@
         </div>
     </div>
 </div>
-@stop
+
+@endsection
 

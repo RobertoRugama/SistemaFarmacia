@@ -16,6 +16,21 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+/*
+Route::group(['middleware' => ['web']], fuction(){
+	return ('task','TaskController');
+});
+
+Route::group(['middleware' => ['web']], fuction(){
+	return::auth();
+});
+*/
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('provider','ProviderController');
+Route::resource('laboratory','LaboratoryController');
+Route::resource('category','CategoryController');
+Route::resource('product','ProductController');
+
+
+

@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Sanvalentine</title>
+  <title>{{config('app.name')}}</title>
 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="{{ asset ('adminlte/css/skins/skin-blue.min.css')}}">
+   <link rel="stylesheet" href="{{asset ('admin/SweetAlertjs/sweetalert.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +34,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Google Font -->
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        href="{{ asset ('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -62,11 +64,11 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b></b>Sanvalentine</span>
+      <span class="logo-lg"><b></b>{{config('app.name')}}</span>
     </a>
 
     <!-- Header Navbar -->
@@ -175,8 +177,8 @@ desired effect
         <a href="#"><i class="fa fa-link"></i><span>Mis Proveedores</span>
         </a>
           <ul class="treeview-menu">
-            <li><a href="">Proveedores</a></li>
-            <li><a href="#">Laboratorio</a></li>
+            <li><a href="{{route('provider.index')}}">Proveedores</a></li>
+            <li><a href="{{route('laboratory.index')}}">Laboratorio</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -186,8 +188,8 @@ desired effect
               </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="#">Categoria</a></li>
-            <li><a href="#">Productos</a></li>
+            <li><a href="{{route('category.index')}}">Categoria</a></li>
+            <li><a href="{{route('product.index')}}">Productos</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -355,7 +357,8 @@ desired effect
 <script src="{{ asset ('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset ('adminlte/js/adminlte.min.js')}}"></script>
-
+ <script src="{{ asset ('adminlte/SweetAlert/sweetalert.min.js') }}"></script>
+@include('sweet::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
