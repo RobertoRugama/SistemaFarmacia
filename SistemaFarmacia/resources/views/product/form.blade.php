@@ -36,12 +36,14 @@
          @endforeach
       </select>
     </div>
-   <div class="form-group"> 
-   <label for="laboratory">Laboratorio</label>
-            <select class="form-control">
-             
-            </select>
-        </div>>
+   <div class="form-group">
+    <label for="laboratory">Laboratorio</label>
+      <select class="form-control">
+         @foreach($laboratories as $lab)
+           <option>{{$lab->name}}</option>
+         @endforeach
+      </select>
+    </div>
   <div class="for-group">
       <button class="btn btn-primary" type="submit" >Guardar</button>
       <button class="btn btn-danger" type="reset" >Cancelar</button>
