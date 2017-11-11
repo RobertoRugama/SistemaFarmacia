@@ -15,10 +15,10 @@ class CreateChargeTable extends Migration
     {
         Schema::create('charge', function (Blueprint $table) {
             $table->increments('id');
-            $status->boolean('status');
-            $charge->string('charge');
-            $description->string('description');
-            $salary->float('salary');
+            $table->boolean('status');
+            $table->string('charge');
+            $table->string('description');
+            $table->float('salary');
             $table->timestamps();
         });
     }
