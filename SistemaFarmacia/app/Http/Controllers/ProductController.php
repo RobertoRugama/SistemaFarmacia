@@ -44,8 +44,12 @@ class ProductController extends Controller
     {
         $provider =DB::table('providers')->where('status','=','1')->get();
         $category =DB::table('categories')->where('status','=','1')->get();
-        $laboratory =DB::table('laboratories')->where('status','=','1')->get();
-        return view("product.create",["providers"=>$provider],["categories"=>$category],["laboratories"=>$laboratory]);
+        $laboratories =DB::table('laboratories')->where('status','=','1')->get();
+        return view("product.create",[ 
+                        "providers"=>$provider,
+                        "categories"=>$category,
+                        "laboratories"=>$laboratories
+                  ]);
     }
 
     /**
