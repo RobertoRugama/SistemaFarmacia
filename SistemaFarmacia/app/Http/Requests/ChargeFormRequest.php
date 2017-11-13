@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProviderFormRequest extends FormRequest
+class ChargeFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,15 @@ class ProviderFormRequest extends FormRequest
     public function rules()
     {
         return [
-        'ruc'=>'required|max:14',
-        'name'=>'required',
-        'address'=>'max:250',
-
-            //
-
+            'name'=>'required',
+            'description'=>'required',
+            'salary'=>'required',
         ];
     }
 
     public function messages(){
-     return [
-         'ruc' => 'este campo debe ser solo numerico',
-         'name.min' => 'porfavor verifique el campo',
-         'address.max' => 'El campo title no puede tener más de 255 carácteres',
-     ];
- }
+        return [
+        'salary'=>'Este campo debe ser numerico',
+        ];
+    }
 }

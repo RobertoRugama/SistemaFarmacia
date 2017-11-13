@@ -27,7 +27,8 @@ class ProductController extends Controller
     {
         if($request){
            $query = trim($request->get('searchText'));
-           $products = Product::where('name','LIKE','%'.$query.'%')->orderBy('id', 'desc')->paginate(7);
+           $products = Product::where('name','LIKE','%'.$query.'%')
+           ->where('status','=','1')->orderBy('id', 'desc')->paginate(7);
            return view("product.index",[
                             "products"   =>  $products,
                             "searchText" =>  $query
@@ -47,8 +48,9 @@ class ProductController extends Controller
         $laboratories =DB::table('laboratories')->where('status','=','1')->get();
         return view("product.create",[ 
                         "providers"=>$provider,
-                        "categories"=>$category,
-                        "laboratories"=>$laboratories
+                        "laboratories"=>$laboratories,
+                        "categories"=>$category
+                        
                   ]);
     }
 
@@ -69,19 +71,21 @@ class ProductController extends Controller
             $product->existence = $request->get('existence');
             $product->reference = $request->get('reference');
             $product->provider_id = $request->get('provider_id');
-            $product->laboratory_id = $request->get('laboratory_id');
             $product->category_id = $request->get('category_id');
-
+            $product->laboratory_id = $request->get('laboratory_id');
+            
             if ($product->save()) {
-                Alert::success('Success Message','se ha Guardado el producto');
-                return Redirect('product.index');
+                Alert::success('Success Message','se ha Guardado el producto')->persistent('Close');
+                return Redirect('product');
             }else{
-                Alert::Warning('Warning Message', 'No se pudo Guardar el Producto');
+                Alert::Warning('Warning Message', 'No se pudo Guardar el Producto')->persistent('Close');
                 return Redirect('product');
             }
             
         } catch (Exception $e) {
-            Alert::error('Error Message','ha ocurrido un error al Registrar el producto');
+            Alert::error('Error Message','ha ocurrido un error al Registrar el producto'.$e)->persistent('Close'); 
+            return redirect()->route('product.create');
+
             
         }
     }
@@ -108,12 +112,13 @@ class ProductController extends Controller
     {
         $product=Product::findOrFail($id);
         $provider=DB::table('providers')->where('status','=','1')->get();
+        $laboratories=DB::table('laboratories')->where('status','=','1')->get();
         $category=DB::table('categories')->where('status','=','1')->get();
-        $laboratory=DB::table('laboratories')->where('status','=','1')->get();
         return view("product.edit",[
-                                    "product"=>$product,
-                                    "category"=>$category,
-                                    "laboratory"=>$laboratory
+                                    "provider"=>$provider,
+                                     "laboratories"=>$laboratories,
+                                    "category"=>$category
+                                   
                 ]);
     }
 
@@ -138,16 +143,14 @@ class ProductController extends Controller
             $product->category_id=$request->get('category_id');
             if ($product->update()) {
                 Alert::success('Success Message', 'El producto ha sido modificado!!!');
-                return redirect("product.index");
+                return redirect("product");
             }else{
                 Alert::warning('Warning Message', 'No se pudo modificar el registro!!!');
                 return redirect("product.edit");
             }
-
         } catch (Exception $e) {
-
                 Alert::error('Error Message', 'No se pudo modificar el registro!!!');
-                return redirect("product.edit");
+                return redirect()->route("product.edit");
             
         }
     }

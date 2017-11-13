@@ -49,7 +49,7 @@ class ProviderController extends Controller
           Alert::error('Error Message', 'Error al guardar el registro');
          }
       }catch(Exception $e){
-        Alert::error('Error Message', 'Error en la data insertar Verificar si hay campos vacios')->persistent('close');
+        Alert::error('Error Message', 'Error en la data insertar Verificar si hay campos vacios'.$e)->persistent('close');
            return redirect()->route('provider.create');
       }
      
@@ -60,7 +60,7 @@ class ProviderController extends Controller
 
    }
    public function edit($id){
-      	return view("provider.edit",["provider"=>Provider::findOrFail($id)]);
+      return view("provider.edit",["provider"=>Provider::findOrFail($id)]);
    }
 
    public function update(ProviderFormRequest $request, $id){

@@ -13,7 +13,7 @@
                         </div>
                     @endif
                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <h3>Listado Productos <a href="{{ route('product.create') }}"><button class="btn btn-success">Nuevo</button></a></h3>
                             @include('product.search')
                             <div class="row">
@@ -42,12 +42,15 @@
                                                 <td>{{$p->description}}</td>
                                                 <td>{{$p->existence}}</td>
                                                 <td>{{$p->reference}}</td>
-                                                <td>{{ $p->provider->name }}</td> 
-                                                <td>{{ $p->category->name }}</td>
-                                                <td>{{ $p->laboratory->name }}</td>
-                                                
+                                                <td>{{$p->provider->name}}</td> 
+                                                <td>{{$p->category->name}}</td>
+                                                <td>{{$p->laboratory->name}}</td>
                                                 <td>   
-                                                   
+                                                    <a href="{{ URL::action('ProductController@edit',$p->id)}}"><button class="btn btn-primary">Editar</button></a>
+                                                 {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $p->id],'style'=>'display:inline']) !!}
+                                                   {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                                   @include('product.message')
+                                                  {!! Form::close() !!}
                                                 </td>
                                             </tr>
                                             @endforeach

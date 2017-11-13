@@ -221,7 +221,7 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Cargos</a></li>
+            <li><a href="{{route('charge.index')}}">Cargos</a></li>
             <li><a href="#">Registro Empleados</a></li>
             <li><a href="#">Recaudacion</a></li>
           </ul>

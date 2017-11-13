@@ -31,6 +31,7 @@ Route::resource('provider','ProviderController');
 Route::resource('laboratory','LaboratoryController');
 Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
+Route::resource('charge', 'ChargeController');
 
 
 

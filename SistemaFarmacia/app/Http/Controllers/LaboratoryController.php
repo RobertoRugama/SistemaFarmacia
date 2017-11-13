@@ -13,6 +13,7 @@ use App\Http\Requests\TaskRequest;
 use DB;
 use Exception;
 use Alert;  
+
 class LaboratoryController extends Controller
 {
     /**
@@ -66,7 +67,7 @@ class LaboratoryController extends Controller
           Alert::error('Error Message', 'Error al guardar el registro');
          }
       }catch(Exception $e){
-        Alert::error('Error Message', 'Error en la data insertar Verificar si hay campos vacios')->persistent('close');
+        Alert::error('Error Message', 'Error en la data insertar Verificar si hay campos vacios'.$e)->persistent('close');
            return redirect()->route('laboratory.create');
       }
      

@@ -2,7 +2,7 @@
 @section('content container-fluid')
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-10 col-md-2-offset-2">
             <div class="panel panel-default">
             <div class="pull-right">
             <!-- Boton del formulario X redirecciona al index del conntent-->
