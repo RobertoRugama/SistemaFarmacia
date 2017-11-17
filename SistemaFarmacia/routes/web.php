@@ -32,6 +32,7 @@ Route::resource('laboratory','LaboratoryController');
 Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
 Route::resource('charge', 'ChargeController');
+Route::resource('employee', 'EmployeeController');
 
 
 

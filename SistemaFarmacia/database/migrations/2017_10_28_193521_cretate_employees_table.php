@@ -21,10 +21,10 @@ class CretateEmployeesTable extends Migration
             $table->string('first_name',15);
             $table->string('second_name',15);
             $table->string('first_last_name',15);
-            $table->string('second_first_last_name',15);
+            $table->string('second_last_name',15);
             $table->string('address',100);
             $table->string('user',20);
-            $table->string('previleges',10);
+            $table->string('previleges',20);
             $table->integer('charge_id')->unsigned();
             $table->foreign('charge_id')->references('id')->on('charges');
             $table->timestamps();

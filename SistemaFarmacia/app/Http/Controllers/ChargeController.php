@@ -53,9 +53,7 @@ class ChargeController extends Controller
             }else{
                   Alert::warning('Warning Message','ups!! no se pudo Guardar el Registro')->persistent(3500);
                 return redierect('charge.create');
-            }
-            
-            
+            }        
         } catch (Exception $e) {
             Alert::error('error Message','Error al insertar la data Porfavor Verificar los campos vacios')->persistent('close');
              return redirect()->route('charge.create');
