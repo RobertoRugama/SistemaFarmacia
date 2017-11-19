@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChargeTable extends Migration
+class CreateChargesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateChargeTable extends Migration
      */
     public function up()
     {
-        Schema::create('charge', function (Blueprint $table) {
+        Schema::create('charges', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('status');
-            $table->string('charge');
+            $table->string('name');
             $table->string('description');
             $table->float('salary');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateChargeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('charge');
+        Schema::dropIfExists('charges');
     }
 }
