@@ -26,11 +26,11 @@
                         {{Form::token()}}
                             <div class="form-group">
                               <label for="name">Nombre</label>
-                              <input type="text" name="name" class="form-control" value={{$category->name}} placeholder="nombre del la categoria">
+                              <input type="text" name="name" class="form-control" value="{{$category->name}}" placeholder="nombre del la categoria">
                             </div>
                             <div class="form-group">
                               <label for="description">Descripcion</label>
-                              <input type="text" name="description" class="form-control" value={{$category->description}} placeholder="Descripcion de categoria">
+                              <input type="text" name="description" class="form-control" value="{{$category->description}}" placeholder="Descripcion de categoria">
                             </div>
                             
                             <div class="for-group">

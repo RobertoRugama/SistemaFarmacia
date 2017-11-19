@@ -26,15 +26,15 @@
                         {{Form::token()}}
                             <div class="form-group">
                               <label for="ruc">Numero RUC</label>
-                              <input type="text" name="ruc" class="form-control" value={{$provider->ruc}} placeholder="numero ruc....">
+                              <input type="text" name="ruc" class="form-control" value="{{$provider->ruc}}" placeholder="numero ruc....">
                             </div>
                             <div class="form-group">
                               <label for="name">Nombre</label>
-                              <input type="text" name="name" class="form-control" value={{$provider->name}} placeholder="Nombre del proveedor">
+                              <input type="text" name="name" class="form-control" value="{{$provider->name}}" placeholder="Nombre del proveedor">
                             </div>
                             <div class="form-group">
                               <label for="address">Direccion</label>
-                              <input type="text" name="address" class="form-control" value={{$provider->address}} placeholder="Direccion del proveedor">
+                              <input type="text" name="address" class="form-control" value="{{$provider->address}}" placeholder="Direccion del proveedor">
                             </div>
                             <div class="for-group">
                                 <button class="btn btn-primary" type="submit" >Editar</button>

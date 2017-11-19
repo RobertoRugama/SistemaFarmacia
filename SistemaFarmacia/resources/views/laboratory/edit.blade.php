@@ -26,15 +26,15 @@
                         {{Form::token()}}
                             <div class="form-group">
                               <label for="name">Nombre</label>
-                              <input type="text" name="name" class="form-control" value={{$laboratory->name}} placeholder="nombre del laboratorio">
+                              <input type="text" name="name" class="form-control" value="{{$laboratory->name}}" placeholder="nombre del laboratorio">
                             </div>
                             <div class="form-group">
                               <label for="type">Tipo Laboratorio</label>
-                              <input type="text" name="type" class="form-control" value={{$laboratory->type}} placeholder="Tipo de laboratorio">
+                              <input type="text" name="type" class="form-control" value="{{$laboratory->type}}" placeholder="Tipo de laboratorio">
                             </div>
                             <div class="form-group">
                               <label for="location">Direccion</label>
-                              <input type="text" name="location" class="form-control" value={{$laboratory->location}} placeholder="Direccion del laboratorio">
+                              <input type="text" name="location" class="form-control" value="{{$laboratory->location}}" placeholder="Direccion del laboratorio">
                             </div>
                             <div class="for-group">
                                 <button class="btn btn-primary" type="submit" >Editar</button>

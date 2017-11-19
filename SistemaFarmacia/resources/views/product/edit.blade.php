@@ -19,29 +19,29 @@
                     @endif
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h3 class="page-header">Editar Producto {{$p->name}}</h3>
+                        <h3 class="page-header">Editar Producto {{$product->name}}</h3>
                         
-                        {!!Form::model($p,['method'=>'PATCH','route'=>['product.update',$p->id]]) !!}
+                        {!!Form::model($product,['method'=>'PATCH','route'=>['product.update',$product->id]]) !!}
                         {{Form::token()}}
                             <div class="form-group col-md-6">
                               <label for="name">Producto</label>
-                              <input type="text" name="name" class="form-control" value="{{$p->name}}" placeholder="Nombre del producto....">
+                              <input type="text" name="name" class="form-control" value="{{$product->name}}" placeholder="Nombre del producto....">
                             </div>
                             <div class="form-group col-md-6">
                               <label for="presentation">Presentacion</label>
-                              <input type="text" name="presentation" class="form-control" value="{{$p->presentation}}" placeholder="Presentacion del producto....">
+                              <input type="text" name="presentation" class="form-control" value="{{$product->presentation}}" placeholder="Presentacion del producto....">
                             </div>
                             <div class="form-group col-lg-12">
                               <label for="description">Description</label>
-                              <input type="text" name="description" class="form-control" value="{{$p->description}}" placeholder="Descripcion del producto....">
+                              <input type="text" name="description" class="form-control" value="{{$product->description}}" placeholder="Descripcion del producto....">
                             </div>
                             <div class="form-group col-md-3">
                               <label for="existence">Exitencia</label>
-                              <input type="text" name="existence" class="form-control" value="{{$p->existence}}" placeholder="Existencia del producto....">
+                              <input type="text" name="existence" class="form-control" value="{{$product->existence}}" placeholder="Existencia del producto....">
                             </div>
                             <div class="form-group col-md-9">
                               <label for="reference">Referencia</label>
-                              <input type="text" name="reference" class="form-control" value="{{$p->reference}}" placeholder="Referencia del producto....">
+                              <input type="text" name="reference" class="form-control" value="{{$product->reference}}" placeholder="Referencia del producto....">
                             </div>
                              <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                               <label for="provider">Proveedor</label>
