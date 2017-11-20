@@ -25,15 +25,15 @@
                         {{Form::token()}}
                             <div class="form-group">
                               <label for="name">Cargo</label>
-                              <input type="text" name="name" class="form-control" value={{$charge->name}} placeholder="nombre del cargo">
+                              <input type="text" name="name" class="form-control" value="{{$charge->name}}" placeholder="nombre del cargo">
                             </div>
                             <div class="form-group">
                               <label for="description">Descripcion</label>
-                              <input type="text" name="description" class="form-control" value={{$charge->description}} placeholder="Descripcion de cargo...">
+                              <input type="text" name="description" class="form-control" value="{{$charge->description}}" placeholder="Descripcion de cargo...">
                             </div>
                             <div class="form-group">
                               <label for="salary">Salario</label>
-                              <input type="text" name="salary" class="form-control" value={{$charge->salary}} placeholder="Salario del Cargo...">
+                              <input type="text" name="salary" class="form-control" value="{{$charge->salary}}" placeholder="Salario del Cargo...">
                             </div>
                             <div class="for-group">
                                 <button class="btn btn-primary" type="submit" >Editar</button>

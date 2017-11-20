@@ -99,7 +99,9 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        return view("product.show",["product"=>Product::findOrFail($id)]);
+        return view("product.show", [
+                            "product" => Product::findOrFail($id)
+                    ]);
     }
 
     /**
@@ -110,14 +112,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product=Product::findOrFail($id);
-        $provider=DB::table('providers')->where('status','=','1')->get();
-        $laboratories=DB::table('laboratories')->where('status','=','1')->get();
-        $category=DB::table('categories')->where('status','=','1')->get();
+        $product        =  Product::findOrFail($id);
+        $providers      =  DB::table('providers')->where('status','=','1')->get();
+        $laboratories   =  DB::table('laboratories')->where('status','=','1')->get();
+        $categories     =  DB::table('categories')->where('status','=','1')->get();
+
         return view("product.edit",[
-                                    "provider"=>$provider,
-                                     "laboratories"=>$laboratories,
-                                    "category"=>$category
+                                    "product"        =>  $product,
+                                    "providers"      =>  $providers,
+                                    "laboratories"   =>  $laboratories,
+                                    "categories"       =>  $categories
                                    
                 ]);
     }

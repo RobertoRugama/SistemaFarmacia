@@ -41,7 +41,7 @@
                               </div>
                               <div class="form-group col-lg-6 col-md-6">
                                 <label for="first_last_name">Primer Apellido</label>
-                                <input type="text" name="first_last_name" value={{$e->first_last_name}} class="form-control" placeholder="Primer Apellido">
+                                <input type="text" name="first_last_name" value="{{$e->first_last_name}}" class="form-control" placeholder="Primer Apellido">
                               </div>
                               <div class="form-group col-lg-6 col-md-6">
                                 <label for="second_last_name">Segundo Apellido</label>
@@ -57,7 +57,7 @@
                               </div>
                               <div class="form-group col-lg-6 col-md-6">
                                 <label for="previleges">Permisos</label>
-                                <input type="text" name="previleges" value={{$e->previleges}} class="form-control" placeholder="Privilegios de acceso">
+                                <input type="text" name="previleges" value="{{$e->previleges}}" class="form-control" placeholder="Privilegios de acceso">
                               </div>
                               <div class="form-group col-lg-5 col-md-5 col-sm-4 col-xs-10">
                                 <label for="charge">Cago</label>
