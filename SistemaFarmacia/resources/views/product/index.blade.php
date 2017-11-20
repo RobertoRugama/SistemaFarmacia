@@ -51,6 +51,7 @@
                                                    {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                                    @include('product.message')
                                                   {!! Form::close() !!}
+                                                   <a href="{{ URL::action('ProductController@show',$p->id)}}"><button class="btn btn-primary">Detalle</button></a>
                                                 </td>
                                             </tr>
                                             @endforeach

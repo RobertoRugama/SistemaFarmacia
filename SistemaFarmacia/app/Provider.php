@@ -10,7 +10,7 @@ class Provider extends Model
 protected $table = 'providers';
 protected $primaryKey='id';
 public $timestamps = false;
-protected $fillable = ['ruc', 'name', 'address'];
+protected $fillable = ['ruc', 'name', 'address','url'];
 protected $guarded = [];
 }
 

@@ -13,7 +13,7 @@
                         </div>
                     @endif
                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                            <div class="col-lg-12 col-md-10 col-sm-10 col-xs-12">
                             <h3>Listado de Proveedores <a href="{{ route('provider.create') }}"><button class="btn btn-success">Nuevo</button></a></h3>
                             @include('provider.search')
                             <div class="row">
@@ -25,6 +25,7 @@
                                                 <th>ruc</th>
                                                 <th>nombre</th>
                                                 <th>direccion</th> 
+                                                <th>URL</th>
                                                 <th width="250px">Opciones</th>   
                                             </thead>
                                             @foreach($providers as $p)
@@ -35,6 +36,7 @@
                                                 <td>{{$p->ruc}}</td>
                                                 <td>{{$p->name}}</td>
                                                 <td>{{$p->address}}</td>
+                                                <td>{{$p->url}}</td>
                                                 <td>    
                                                     <a href="{{ URL::action('ProviderController@edit',$p->id)}}"><button class="btn btn-primary">Editar</button></a>
                                                  {!! Form::open(['method' => 'DELETE','route' => ['provider.destroy', $p->id],'style'=>'display:inline']) !!}

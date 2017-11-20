@@ -12,6 +12,10 @@
     <label for="address">Direccion</label>
     <input type="text" name="address" class="form-control" placeholder="Direccion del proveedor">
   </div>
+  <div class="form-group">
+    <label for="url">Direccion URL</label>
+    <input type="text" name="url" class="form-control" placeholder="Sitio web o url blog, etc">
+  </div>
   <div class="for-group">
       <button class="btn btn-primary" type="submit" >Guardar</button>
       <button class="btn btn-danger" type="reset" >Cancelar</button>

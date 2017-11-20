@@ -13,7 +13,7 @@ class DetailProductController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

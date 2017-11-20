@@ -36,6 +36,10 @@
                               <label for="address">Direccion</label>
                               <input type="text" name="address" class="form-control" value="{{$provider->address}}" placeholder="Direccion del proveedor">
                             </div>
+                            <div class="form-group">
+                              <label for="url">Direccion URL</label>
+                              <input type="text" name="url" class="form-control" value="{{$provider->url}}" placeholder="Direccion url">
+                            </div>
                             <div class="for-group">
                                 <button class="btn btn-primary" type="submit" >Editar</button>
                                 <button class="btn btn-danger" type="reset" >Cancelar</button>

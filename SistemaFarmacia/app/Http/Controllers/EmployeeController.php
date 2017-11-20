@@ -95,9 +95,14 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-         $employee=Employee::findOrFail($id);
-         $charge=DB::table('charges')->where('status','=','1')->get();
-        return view("employee.edit",["charges"=>$charge]);
+        $employee       =  Employee::findOrFail($id);
+        $charges        =  DB::table('charges')->where('status','=','1')->get();
+        return view("employee.edit",[
+                                    "employee"        =>  $employee,
+                                    "charges"      =>  $charges
+                                    
+                                   
+                ]);
     }
 
     /**

@@ -2,7 +2,7 @@
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="form-group col-lg-6 col-md-6">
     <label for="date_register">Fecha de Registro</label>
-  {!! Form::date('date_register', \Carbon\Carbon::now()) !!}
+  {!! Form::date('date_register', \Carbon\Carbon::now('America/Managua')) !!}
   </div>
   <div class="form-group col-lg-6 col-md-6">
     <label for="identification_card">Cedula</label>

@@ -98,10 +98,20 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
-        return view("product.show", [
-                            "product" => Product::findOrFail($id)
-                    ]);
+        $product        =  Product::findOrFail($id);
+        $p      =  DB::table('products')->where('status','=','1')->get();
+        $providers      =  DB::table('providers')->where('status','=','1')->get();
+        $laboratories   =  DB::table('laboratories')->where('status','=','1')->get();
+        $categories     =  DB::table('categories')->where('status','=','1')->get();
+
+        return view("product.show",[
+                                    "product"        =>  $product,
+                                    "products"        =>  $p,
+                                    "providers"      =>  $providers,
+                                    "laboratories"   =>  $laboratories,
+                                    "categories"     =>  $categories
+                                   
+                ]);
     }
 
     /**

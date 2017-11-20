@@ -47,7 +47,11 @@
                               <label for="provider">Proveedor</label>
                                 <select name="provider_id" class="form-control">
                                    @foreach($providers as $provider)
-                                     <option value="{{$provider->id}}">{{$provider->name}}</option>
+                                   @if($provider->id==$product->provider_id)
+                                     <option value="{{$provider->id}}" selected>{{$provider->name}}</option>
+                                     @else
+                                       <option value="{{$provider->id}}">{{$provider->name}}</option>
+                                     @endif
                                    @endforeach
                                 </select>
                               </div>
@@ -55,7 +59,11 @@
                               <label for="laboratory">Laboratorio</label>
                                 <select name ="laboratory_id" class="form-control">
                                    @foreach($laboratories as $lab)
-                                     <option value="{{$lab->id}}">{{$lab->name}}</option>
+                                   @if($lab->id==$product->laboratory_id)
+                                     <option value="{{$lab->id}}" selected>{{$lab->name}}</option>
+                                     @else
+                                      <option value="{{$lab->id}}">{{$lab->name}}</option>
+                                     @endif
                                    @endforeach
                                 </select>
                               </div>
@@ -63,7 +71,11 @@
                               <label for="category">Categoria</label>
                                 <select name = "category_id" class="form-control">
                                    @foreach($categories as $cat)
-                                     <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                    @if($cat->id==$product->category_id)
+                                     <option value="{{$cat->id}}" selected>{{$cat->name}}</option>
+                                     @else
+                                     <option value="{{$cat->id}}" selected>{{$cat->name}}</option>
+                                     @endif
                                    @endforeach
                                 </select>
                               </div>
