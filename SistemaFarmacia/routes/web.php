@@ -35,5 +35,17 @@ Route::resource('charge', 'ChargeController');
 Route::resource('employee', 'EmployeeController');
 Route::resource('detail_product', 'DetailProductController');
 
+Route::prefix('Invoice')->group(function() {
+	Route::get('/', 'InvoiceController@index')->name('invoices');
+    // Route::get('Detail', 'BinnacleController@indexOrFilter');
+    // Route::post('Create', 'BinnacleController@store');
+    // Route::post('Update/{id}', 'BinnacleController@update');
+    // Route::get('Create', 'BinnacleController@show');
+    // Route::get('FileDownload/{binnacleId}', 'BinnacleController@fileDownload');
+    // Route::put('FileRemove/{binnacleId}', 'BinnacleController@fileRemove');
+    // //  Get data Filter
+    // Route::get('Filter/Show', 'BinnacleController@getFilterData');
+});
+	
 
 

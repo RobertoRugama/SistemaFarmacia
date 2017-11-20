@@ -35,7 +35,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Google Font -->
   <link rel="stylesheet"
         href="{{ asset ('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
-
+  <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css" />
+     
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -199,7 +200,7 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Facturar Producto</a></li>
+            <li><a href="{{ route('invoices') }}">Facturar Producto</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -248,7 +249,7 @@ desired effect
     </section>
 
     <!-- Main content -->
-    <section class="content container-fluid">
+    <section id="app" class="content container-fluid">
 
       <!--------------------------
         | Your Page Content Here |
@@ -358,6 +359,7 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{ asset ('adminlte/js/adminlte.min.js')}}"></script>
  <script src="{{ asset ('adminlte/SweetAlert/sweetalert.min.js') }}"></script>
+ <script src="{{ mix('/js/app.js') }}" type="text/javascript"></script>
 @include('sweet::alert')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
