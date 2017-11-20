@@ -49,7 +49,7 @@ class ProductController extends Controller
         return view("product.create",[ 
                         "providers"=>$provider,
                         "laboratories"=>$laboratories,
-                        "categories"=>$category
+                          "categories"=>$category
                         
                   ]);
     }
