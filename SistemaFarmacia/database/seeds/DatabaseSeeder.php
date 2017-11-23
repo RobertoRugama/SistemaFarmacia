@@ -194,6 +194,41 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ]);
 
+        /************************EMPLOYEES*********************/
+        $employee1 = Db::table('employees')->insertGetId(
+            [
+                'status'=> true,
+                'date_register' => date('Y-m-d H:i:s'),
+                'identification_card'=>'4010407950003Q',
+                'first_name'=>'Juan',
+                'second_name'=>'Jose',
+                'first_last_name'=>'Perez',
+                'second_last_name'=>'Rojas',
+                'address' => 'Plaza el Progreso Módulo No. 1',
+                'user' => 'jjose04',
+                'previleges' => 'admin',
+                'charge_id'    =>  $cajero,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+
+            $employee2 = Db::table('employees')->insertGetId(
+                [
+                    'status'=> true,
+                    'date_register' => date('Y-m-d H:i:s'),
+                    'identification_card'=>'4012212900033H',
+                    'first_name'=>'Alvaro',
+                    'second_name'=>'Marth',
+                    'first_last_name'=>'Talavera',
+                    'second_last_name'=>'Gonzales',
+                    'address' => 'Plaza el Progreso Módulo No. 2',
+                    'user' => 'alvarom33',
+                    'previleges' => 'writer',
+                    'charge_id'    =>  $admon,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
+    
 
     }
 }

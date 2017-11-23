@@ -1,9 +1,10 @@
 import loading from 'vue-full-loading'
 import utils from '../Helper/Utils'
+import states from '../Helper/Utils'
 import moment from 'moment'
 
 export default {
-    mixins: [utils],
+    mixins: [utils,states],
     components: {
         loading,
         moment,
@@ -11,10 +12,23 @@ export default {
      data: function(){
          return {
                 title: 'Facturacion de Productos',
-                dateTemp: null,
                 // data api component
-                comments: [],
-                comment: '',
+                records: {
+                    products: [],
+                },
+                data: {
+                    selectedEmployeeId: null,
+                    customerName: '',
+                    products: []
+                },
+                product: {
+                    id: null,
+                    quantity: null,
+                    unit_price: null,
+                    subtotal: null,
+                    tax: null,
+                    total: null,
+                },
                 // data pagination component
                 counter: 0,
                 pagination: {
@@ -28,17 +42,24 @@ export default {
                 // data loading component
                 show: false,
                 label: '',
-                timeOut: 0
+                timeOut: 0,
+                customError: null
          }
      },
     methods:{
-        getComments: function(page) {
+        getDataForShow: function() {
               this.show = true;
               setTimeout(() => {
-                    axios.get('/Maintenance/' + this.reportId + '/CommentDetails?page='+page)
+                    axios.get('/Invoice/getDataForShow')
                    .then( (res) => {
-                        this.pagination = res.data.pagination;
-                        this.comments = res.data.comments;
+                       // this.pagination = res.data.pagination;
+                        this.records = res.data.records;
+                        if(this.records.employees.length != 0){
+                            this.data.selectedEmployeeId = this.records.employees[0].id;
+                        }
+                        // if(this.records.products.length != 0){
+                        //    // this.data.selectedEmployeeId = this.records.employees[0].id;
+                        // }
                         this.show = false;
                    })
                    .catch( (err) => {
@@ -47,40 +68,19 @@ export default {
                    });
               }, this.timeOut);
         },
-        AddComment: function() {
-              this.show = true;
-               if (!this.comment){
-                  this.showMessage('Error', 'Debe escribir un comentario' , this.error);
-                  this.show = false;
-                  return;
-              }
-              setTimeout(() => {
-                    axios.post('/Maintenance/Comment/Create', {
-                        reportId: this.reportId,
-                        description: this.comment
-                    })
-                   .then( (res) => {
-                        this.show = false;
-                        this.hideModal('AddCommentModal', this.resetCallback);
-                        this.showMessage('Mensaje', res.data.message);
-                   })
-                   .catch( (err) => {
-                        this.showMessage('Error', this.generalError, this.error);
-                        this.show = false;
-                   });
-              }, this.timeOut);
+        invoiceProducts: function() {
+             
         },
         resetCallback: function(){
             this.cleanFields()
-            this.pagination.current_page = 1;
-            this.getComments(this.pagination.current_page);
+           // this.pagination.current_page = 1;
+           // this.getDataForShow(this.pagination.current_page);
         },
         cleanFields: function() {
-            this.comment = '';
+           // this.comment = '';
         }
     },
      mounted () {
-         //this.getComments(this.pagination.current_page);
-         alert('yes')
+         this.getDataForShow();
      }
 }
