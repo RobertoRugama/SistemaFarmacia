@@ -29,7 +29,7 @@ class InvoiceController extends Controller
     public function getDataForShow(Request $request){
 
         $employees = Employee::all();
-        $products  = Product::all();
+        $products  = Product::paginate(3);
         $records = array(
             'employees'  => $employees,
             'products'   => $products

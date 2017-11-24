@@ -16,6 +16,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('invoiceProducts', require('./components/Invoice/Invoice.vue'));
+// common and helpers components
+Vue.component('pagination', require('./components/common/Pagination.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -43,30 +43,39 @@ export default {
                 show: false,
                 label: '',
                 timeOut: 0,
-                customError: null
+                customError: null,
+                isRunFirst: false,
          }
      },
     methods:{
-        getDataForShow: function() {
-              this.show = true;
+        getDataForShow: function(page) {
+              var vm = this;
+              vm.show = true;
               setTimeout(() => {
-                    axios.get('/Invoice/getDataForShow')
+                    axios.get('/Invoice/getDataForShow?page='+page)
                    .then( (res) => {
-                       // this.pagination = res.data.pagination;
-                        this.records = res.data.records;
-                        if(this.records.employees.length != 0){
-                            this.data.selectedEmployeeId = this.records.employees[0].id;
+                        vm.records = res.data.records;
+                        vm.pagination = vm.records.products;
+                        vm.records.products = vm.pagination.data;
+                        if(vm.isRunFirst){
+                            if(vm.records.employees.length != 0){
+                                vm.data.selectedEmployeeId = vm.records.employees[0].id;
+                            }
+                            vm.isRunFirst = false;
                         }
-                        // if(this.records.products.length != 0){
-                        //    // this.data.selectedEmployeeId = this.records.employees[0].id;
-                        // }
-                        this.show = false;
+                        vm.show = false;
                    })
                    .catch( (err) => {
-                        this.showMessage('Error', this.generalError, this.error);
-                        this.show = false;
+                        vm.showMessage('Error', vm.generalError, vm.error);
+                        vm.show = false;
                    });
-              }, this.timeOut);
+              }, vm.timeOut);
+        },
+        addProduct: function(id){
+            let selectedProduct = this.records.products.filter(function(product){
+                return product.id == id;
+            });
+            this.data.products.push(selectedProduct[0]);
         },
         invoiceProducts: function() {
              
@@ -81,6 +90,7 @@ export default {
         }
     },
      mounted () {
-         this.getDataForShow();
+         this.isRunFirst = true;
+         this.getDataForShow(this.pagination.current_page);
      }
 }

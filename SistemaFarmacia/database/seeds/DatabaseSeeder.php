@@ -228,7 +228,129 @@ class DatabaseSeeder extends Seeder
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 ]);
-    
+             /************************PRODUCTS*********************/
+            $pampers = Db::table('products')->insertGetId(
+            [
+                'status'=> true,
+                'name' => 'Pampers',
+                'presentation'=>'Bolson',
+                'description'=>'para bebes de 2 a 4 meses',
+                'existence'=> 200,
+                'reference'=>'Mayor',
+                'unit_price'=>188.5,
+                'provider_id' => $estrellaRoja,
+                'laboratory_id' => $ramos,
+                'category_id'    =>  $hygiene,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+            $ambromox2 = Db::table('products')->insertGetId(
+                [
+                    'status'=> true,
+                    'name' => 'AB AMBROMOX',
+                    'presentation'=>'Vial + Accesorios',
+                    'description'=>'Polvo para Solución INYECTABLE 1,200 mg',
+                    'existence'=> 100,
+                    'reference'=>'Unidad',
+                    'unit_price'=>40,
+                    'provider_id' => $estrellaRoja,
+                    'laboratory_id' => $ramos,
+                    'category_id'    =>  $categoryA,
+                    'created_at' => date('Y-m-d H:i:s'),
+                    'updated_at' => date('Y-m-d H:i:s'),
+                ]);
+               $ambromox1 = Db::table('products')->insertGetId(
+                    [
+                        'status'=> true,
+                        'name' => 'AB AMBROMOX',
+                        'presentation'=>'Caja Vial',
+                        'description'=>'Polvo para Solución INYECTABLE 600 mg',
+                        'existence'=> 100,
+                        'reference'=>'Unidad',
+                        'unit_price'=>30,
+                        'provider_id' => $estrellaRoja,
+                        'laboratory_id' => $ramos,
+                        'category_id'    =>  $categoryA,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+                $irbelab = Db::table('products')->insertGetId(
+                    [
+                        'status'=> true,
+                        'name' => 'IRBELAB',
+                        'presentation'=>'Caja Envase Blister Tabletas',
+                        'description'=>'Tableta',
+                        'existence'=> 10,
+                        'reference'=>'Detalle',
+                        'unit_price'=>4,
+                        'provider_id' => $estrellaRoja,
+                        'laboratory_id' => $ramos,
+                        'category_id'    =>  $categoryA,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+                $adacel = Db::table('products')->insertGetId(
+                    [
+                        'status'=> true,
+                        'name' => 'ADACEL',
+                        'presentation'=>'Caja Frasco X 0.5 mL',
+                        'description'=>'Suspensión Inyectable',
+                        'existence'=> 22,
+                        'reference'=>'Unidad',
+                        'unit_price'=>2.54,
+                        'provider_id' => $estrellaRoja,
+                        'laboratory_id' => $ramos,
+                        'category_id'    =>  $categoryA,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+                $amikacina_sufalto = Db::table('products')->insertGetId(
+                    [
+                        'status'=> true,
+                        'name' => 'AMIKACINA SULFATO',
+                        'presentation'=>'Ampolla x 4 mL',
+                        'description'=>'Solución Inyectable 1 g/4 mL',
+                        'existence'=> 50,
+                        'reference'=>'Detalle',
+                        'unit_price'=>34,
+                        'provider_id' => $calox,
+                        'laboratory_id' => $unimark,
+                        'category_id'    =>  $categoryA,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+
+                $amikacina = Db::table('products')->insertGetId(
+                    [
+                        'status'=> true,
+                        'name' => 'AMIKACINA',
+                        'presentation'=>'Ampolla X 2 mL',
+                        'description'=>'Solución Inyectable 100 mg/2 mL',
+                        'existence'=> 100,
+                        'reference'=>'Detalle',
+                        'unit_price'=>44,
+                        'provider_id' => $calox,
+                        'laboratory_id' => $unimark,
+                        'category_id'    =>  $categoryA,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
+
+                $ampicilina_sulbactam = Db::table('products')->insertGetId(
+                    [
+                        'status'=> true,
+                        'name' => 'AMPICILINA + SULBACTAM',
+                        'presentation'=>'VialL',
+                        'description'=>'Polvo para Solución Polvo para Solución',
+                        'existence'=> 20,
+                        'reference'=>'Detalle',
+                        'unit_price'=>120.12,
+                        'provider_id' => $calox,
+                        'laboratory_id' => $unimark,
+                        'category_id'    =>  $categoryA,
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                    ]);
 
     }
 }

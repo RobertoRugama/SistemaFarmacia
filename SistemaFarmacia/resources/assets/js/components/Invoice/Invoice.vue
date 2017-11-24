@@ -53,46 +53,58 @@
                                 </div>
                             </form>
                             <div class="col-md-12">
-									<div v-show="records.products.length > 0" class="table-responsive m-top">
-										<table class="table table-striped table-bordered">
-											<thead>
-												<tr>
-												    <th>Nombre</th>
-													<th>Presentación</th>
-													<th>Descripción</th>
-													<th>Precio Unitario</th>
-													<th>Existencia</th>
-													<th>Acciones</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr v-for="product in records.products">
-                                                    <td>{{ product.name }}</td>
-                                                    <td>{{ product.presentation }}</td>
-                                                    <td>{{ product.description }}</td>
-                                                    <td>C$ {{ product.unit_price }}</td>
-                                                    <td>{{ product.existence }} und</td>		
-                                                    <!--Edit report-->
-                                                    <td>
-                                                        <button class="btn btn-default btn-xs">
-                                                            <em class="fa fa-edit"></em> Editar 
-                                                        </button>
-                                                        <!-- <button v-else class="btn btn-default btn-xs" 
-                                                            v-on:click.prevent="actionType(actionEdit, report.id)">
-                                                            <em class="fa fa-edit"></em> Detalle 
-                                                        </button> -->
-                                                    </td>
-					
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									<div class="container-fluid" v-show="records.products.length == 0">
-										<div class="Aligner">
-											<div class="Aligner-item"><h3 class="lead text-muted">No hay productos en el inventario</h3> </div>
-										</div>	
+								<div v-show="records.products.length > 0" class="table-responsive m-top">
+									<table class="table table-striped table-bordered">
+										<thead>
+											<tr>
+												<th>Nombre</th>
+												<th>Presentación</th>
+												<th>Descripción</th>
+												<th>Precio Unitario</th>
+												<th>Existencia</th>
+												<th>Acciones</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr v-for="product in records.products">
+												<td>{{ product.name }}</td>
+												<td>{{ product.presentation }}</td>
+												<td>{{ product.description }}</td>
+												<td>C$ {{ product.unit_price }}</td>
+												<td>{{ product.existence }} und</td>		
+												<td class="action">
+													<button class="btn btn-info btn-sm" @click.prevent="addProduct(product.id)">
+														<em class="fa fa-plus"></em> 
+													</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="col-md-12">
+										<pagination v-show="pagination.last_page != 1" :pagination="pagination"
+													@click.native="getDataForShow(pagination.current_page)"
+													:offset="4">
+										</pagination>
 									</div>
 								</div>
+								<div class="container-fluid" v-show="records.products.length == 0">
+									<div class="Aligner">
+										<div class="Aligner-item"><h3 class="lead text-muted">No hay productos en el inventario</h3> </div>
+									</div>	
+								</div>
+							</div>
+
+							<div class="col-md-12">
+								<ul class="list-group">
+									<template v-for="product in data.products">
+										<li class="list-group-item">
+											<span class="badge">14 und</span>
+											{{ product.name }} - {{ product.presentation }} - {{ product.description }} 
+											<span class="text-danger">C$ {{ product.unit_price }}</span>
+										</li>
+									</template>
+								</ul>
+							</div>
 
 						</div>
 					</div>
@@ -110,3 +122,12 @@
 		mixins: [invoiceController]
 	}
 </script>
+
+<style scoped>
+	.table td, th {
+		text-align: center;   
+	}		
+	.action{
+		width: 90px;
+	}
+</style>
