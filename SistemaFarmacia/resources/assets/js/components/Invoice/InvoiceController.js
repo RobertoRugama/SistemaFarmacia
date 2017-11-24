@@ -45,9 +45,13 @@ export default {
                 timeOut: 0,
                 customError: null,
                 isRunFirst: false,
+                tabIndex: 1,
          }
      },
     methods:{
+        selectTab:  function (tabIndex) {
+            this.tabIndex = tabIndex;
+        },
         getDataForShow: function(page) {
               var vm = this;
               vm.show = true;

@@ -17804,6 +17804,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -17924,10 +17977,14 @@ if (token) {
             label: '',
             timeOut: 0,
             customError: null,
-            isRunFirst: false
+            isRunFirst: false,
+            tabIndex: 1
         };
     },
     methods: {
+        selectTab: function selectTab(tabIndex) {
+            this.tabIndex = tabIndex;
+        },
         getDataForShow: function getDataForShow(page) {
             var vm = this;
             vm.show = true;
@@ -48477,22 +48534,42 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('div', {
     staticClass: "box"
   }, [_c('div', {
-    staticClass: "box-header with-border"
-  }, [_c('div', {
-    staticClass: "Aligner"
-  }, [_c('div', {
-    staticClass: "Aligner-item"
-  }, [_c('span', {
-    staticClass: "lead"
-  }, [_vm._v(_vm._s(_vm.title))])])]), _vm._v(" "), _vm._m(0, false, false)]), _vm._v(" "), _c('div', {
     staticClass: "box-body"
   }, [_c('div', {
     staticClass: "container-fluid"
-  }, [_c('form', {
-    staticClass: "form-horizontal",
-    attrs: {
-      "role": "form"
+  }, [_c('ul', {
+    staticClass: "nav nav-tabs nav-justified"
+  }, [_c('li', {
+    class: {
+      'active': _vm.tabIndex === 1
     }
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.selectTab(1)
+      }
+    }
+  }, [_c('span', [_vm._v("Datos Generales de Facturación")])])]), _vm._v(" "), _c('li', {
+    class: {
+      'active': _vm.tabIndex === 2
+    }
+  }, [_c('a', {
+    on: {
+      "click": function($event) {
+        $event.preventDefault();
+        _vm.selectTab(2)
+      }
+    }
+  }, [_c('span', [_vm._v("Generar Fáctura de Productos")])])])]), _vm._v(" "), _c('div', {
+    staticClass: "tab-content"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.tabIndex === 1),
+      expression: "tabIndex === 1"
+    }]
   }, [_c('div', {
     staticClass: "form-group"
   }, [_c('div', {
@@ -48531,7 +48608,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": employee.id
       }
-    }, [_vm._v("\n                                                    " + _vm._s(employee.first_name) + " " + _vm._s(employee.first_last_name) + "\n                                                ")])
+    }, [_vm._v("\n\t\t\t\t\t\t\t\t\t\t\t\t\t" + _vm._s(employee.first_name) + " " + _vm._s(employee.first_last_name) + "\n\t\t\t\t\t\t\t\t\t\t\t\t")])
   }))])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-5"
   }, [_c('label', {
@@ -48566,7 +48643,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-md-2"
   }, [_c('label', {
     staticClass: "control-label pull-right lead text-danger"
-  }, [_vm._v(_vm._s(new Date().getDate()) + " - \n                                        " + _vm._s(new Date().getMonth()) + " - " + _vm._s(new Date().getFullYear()))])])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(new Date().getDate()) + " - \n\t\t\t\t\t\t\t\t\t\t" + _vm._s(new Date().getMonth()) + " - " + _vm._s(new Date().getFullYear()))])])]), _vm._v(" "), _c('div', {
     staticClass: "col-md-12"
   }, [_c('div', {
     directives: [{
@@ -48578,7 +48655,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "table-responsive m-top"
   }, [_c('table', {
     staticClass: "table table-striped table-bordered"
-  }, [_vm._m(1, false, false), _vm._v(" "), _c('tbody', _vm._l((_vm.records.products), function(product) {
+  }, [_vm._m(0, false, false), _vm._v(" "), _c('tbody', _vm._l((_vm.records.products), function(product) {
     return _c('tr', [_c('td', [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.presentation))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c('td', [_vm._v("C$ " + _vm._s(product.unit_price))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.existence) + " und")]), _vm._v(" "), _c('td', {
       staticClass: "action"
     }, [_c('button', {
@@ -48618,34 +48695,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "records.products.length == 0"
     }],
     staticClass: "container-fluid"
-  }, [_vm._m(2, false, false)])]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-12"
-  }, [_c('ul', {
-    staticClass: "list-group"
-  }, [_vm._l((_vm.data.products), function(product) {
-    return [_c('li', {
-      staticClass: "list-group-item"
-    }, [_c('span', {
-      staticClass: "badge"
-    }, [_vm._v("14 und")]), _vm._v("\n\t\t\t\t\t\t\t\t\t\t\t" + _vm._s(product.name) + " - " + _vm._s(product.presentation) + " - " + _vm._s(product.description) + " \n\t\t\t\t\t\t\t\t\t\t\t"), _c('span', {
-      staticClass: "text-danger"
-    }, [_vm._v("C$ " + _vm._s(product.unit_price))])])]
-  })], 2)])])])])])])], 1)
+  }, [_vm._m(1, false, false)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.tabIndex === 2),
+      expression: "tabIndex === 2"
+    }]
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.data.products.length > 0),
+      expression: "data.products.length > 0"
+    }],
+    staticClass: "table-responsive m-top"
+  }, [_c('table', {
+    staticClass: "table table-striped table-bordered"
+  }, [_vm._m(2, false, false), _vm._v(" "), _c('tbody', _vm._l((_vm.data.products), function(product) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(product.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.presentation))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.description))]), _vm._v(" "), _c('td', [_vm._v("C$ " + _vm._s(product.unit_price))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.existence) + " und")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.existence) + " und")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.existence) + " und")]), _vm._v(" "), _c('td', [_vm._v(_vm._s(product.existence) + " und")]), _vm._v(" "), _c('td', {
+      staticClass: "action"
+    }, [_c('button', {
+      staticClass: "btn btn-info btn-sm",
+      on: {
+        "click": function($event) {
+          $event.preventDefault();
+          _vm.addProduct(product.id)
+        }
+      }
+    }, [_c('em', {
+      staticClass: "fa fa-plus"
+    })])])])
+  }))])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.data.products.length == 0),
+      expression: "data.products.length == 0"
+    }],
+    staticClass: "container-fluid"
+  }, [_vm._m(3, false, false)])])])])])])])])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "box-tools pull-right"
-  }, [_c('button', {
-    staticClass: "btn btn-box-tool",
-    attrs: {
-      "type": "button",
-      "data-widget": "collapse",
-      "data-toggle": "tooltip",
-      "title": "Collapse"
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-minus"
-  })])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("Nombre")]), _vm._v(" "), _c('th', [_vm._v("Presentación")]), _vm._v(" "), _c('th', [_vm._v("Descripción")]), _vm._v(" "), _c('th', [_vm._v("Precio Unitario")]), _vm._v(" "), _c('th', [_vm._v("Existencia")]), _vm._v(" "), _c('th', [_vm._v("Acciones")])])])
 },function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -48655,6 +48745,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h3', {
     staticClass: "lead text-muted"
   }, [_vm._v("No hay productos en el inventario")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("Nombre")]), _vm._v(" "), _c('th', [_vm._v("Presentación")]), _vm._v(" "), _c('th', [_vm._v("Descripción")]), _vm._v(" "), _c('th', [_vm._v("Precio Unitario")]), _vm._v(" "), _c('th', [_vm._v("Cantidad")]), _vm._v(" "), _c('th', [_vm._v("Subtotal")]), _vm._v(" "), _c('th', [_vm._v("Impuesto")]), _vm._v(" "), _c('th', [_vm._v("Total")]), _vm._v(" "), _c('th', [_vm._v("Acciones")])])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "Aligner"
+  }, [_c('div', {
+    staticClass: "Aligner-item"
+  }, [_c('h3', {
+    staticClass: "lead text-muted"
+  }, [_vm._v("Usted no ha agregado productos a su compra.")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
