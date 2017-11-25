@@ -33,7 +33,7 @@ Route::resource('category','CategoryController');
 Route::resource('product','ProductController');
 Route::resource('charge', 'ChargeController');
 Route::resource('employee', 'EmployeeController');
-Route::resource('detail_product', 'DetailProductController');
+Route::resource('detailproduct', 'DetailProductController');
 
 
 

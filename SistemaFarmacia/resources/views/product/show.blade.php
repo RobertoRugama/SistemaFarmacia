@@ -3,19 +3,8 @@
 <div class="content">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                 <label for="provider">Proveedor</label>
-                     <select name="id" class="form-control">
-                         @foreach($products as $p)
-                         <option value="{{$p->id}}" selected>{{$p->name}}</option>                          
-                        @endforeach
-                    </select>
-                </div>
             <div class="pull-left">
-                <h2>Producto  {{$p->name}}</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('product.index') }}">X</a>
+                <h2>Producto  {{$product->name}}</h2>
             </div>
         </div>
     </div>
@@ -55,6 +44,8 @@
             </div>
         </div>
     </div>
-     @include('product.formshow')
+    {!! Form::open(array('route'=>'detailproduct.store','method'=>'POST')) !!}
+     @include('detailproduct.formshow')
+     {!!Form::close()!!}
 </div>
 @endsection
