@@ -93,6 +93,31 @@ export default {
            // this.comment = '';
         }
     },
+    computed:{
+        subtotal: function(){
+            var subtotal = 0.0;
+            for(var i = 0; i < this.data.products.length; i++){
+                subtotal += this.data.products[i].unit_price;
+            }
+            return subtotal;
+        },
+        tax: function(){
+            return this.subtotal * 0.15;
+        },
+        total: function(){
+            return this.subtotal + this.tax;
+        },
+        hasProductInList: function(productId){
+            // console.log(productId)
+            // for(var i = 0; i < this.data.products.length; i++){
+            //     if(this.records.products[i].id == productId){
+            //         return true;
+            //     }
+            // }
+            // console.log( this.records.products.length)
+            return false;
+        }
+    },
      mounted () {
          this.isRunFirst = true;
          this.getDataForShow(this.pagination.current_page);

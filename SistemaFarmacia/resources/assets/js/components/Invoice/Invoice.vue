@@ -82,9 +82,16 @@
 													<td>C$ {{ product.unit_price }}</td>
 													<td>{{ product.existence }} und</td>		
 													<td class="action">
-														<button class="btn btn-info btn-sm" @click.prevent="addProduct(product.id)">
-															<em class="fa fa-plus"></em> 
-														</button>
+														<template v-if="hasProductInList(product.id)">
+															<button class="btn btn-danger btn-sm" @click.prevent="addProduct(product.id)">
+																<em class="fa fa-trash-o"></em> 
+															</button>
+														</template>
+														<!--<template v-hide="!hasProductInList(product.id)">
+															<button class="btn btn-info btn-sm" @click.prevent="addProduct(product.id)">
+																<em class="fa fa-plus"></em> 
+															</button>
+														</template> -->
 													</td>
 												</tr>
 											</tbody>
@@ -102,6 +109,21 @@
 										</div>	
 									</div>
 								</div>
+								</br>
+								
+									
+								<div class="col-md-12 card text-info lead">
+								    <div class="col-md-12">
+										Subtotal: C$ {{ subtotal }}
+									</div>
+									<div class="col-md-12">
+										Impuesto: C$ {{ tax }}
+									</div>
+									<div class="col-md-12">
+										Total: C$ {{ total }}
+									</div>
+								</div>
+								
 							</div>
 							<div v-show="tabIndex === 2">
 								<div v-show="data.products.length > 0" class="table-responsive m-top">
@@ -145,20 +167,6 @@
 								 </div>
 							</div>
 						</div>
-
-
-						<!--<div class="col-md-12">
-							<ul class="list-group">
-								<template v-for="product in data.products">
-									<li class="list-group-item">
-										<span class="badge">14 und</span>
-										{{ product.name }} - {{ product.presentation }} - {{ product.description }} 
-										<span class="text-danger">C$ {{ product.unit_price }}</span>
-									</li>
-								</template>
-							</ul>
-						</div>
-								-->
 						</div>
 					</div>
 					<!-- /.box-body -->
@@ -182,5 +190,10 @@
 	}		
 	.action{
 		width: 90px;
+	}
+	.card{
+		border-radius: 2%;
+		box-shadow: 5px 5px 10px #F5F5DC inset;
+		padding: 20px 5px;
 	}
 </style>
