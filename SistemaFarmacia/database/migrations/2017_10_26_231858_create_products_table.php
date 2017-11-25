@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
         $table->string('description');
         $table->integer('existence');
         $table->string('reference');
+        $table->double('unit_price')->nullable();
 
         $table->integer('provider_id')->unsigned();
         $table->integer('laboratory_id')->unsigned();

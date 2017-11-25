@@ -14,7 +14,7 @@ class CretatePurchaseDetailsTable extends Migration
     public function up()
     {
         //
-        Schema::create('purchase_deatails', function(Blueprint $table){
+        Schema::create('purchase_details', function(Blueprint $table){
            $table->increments('id');
            $table->integer('requested_amount');
            $table->float('unit_value');
