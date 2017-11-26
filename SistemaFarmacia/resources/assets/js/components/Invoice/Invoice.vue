@@ -81,17 +81,16 @@
 													<td>{{ product.description }}</td>
 													<td>C$ {{ product.unit_price }}</td>
 													<td>{{ product.existence }} und</td>		
-													<td class="action">
-														<template v-if="hasProductInList(product.id)">
-															<button class="btn btn-danger btn-sm" @click.prevent="addProduct(product.id)">
-																<em class="fa fa-trash-o"></em> 
-															</button>
-														</template>
-														<!--<template v-hide="!hasProductInList(product.id)">
-															<button class="btn btn-info btn-sm" @click.prevent="addProduct(product.id)">
-																<em class="fa fa-plus"></em> 
-															</button>
-														</template> -->
+													<td class="action">																	
+														<button class="btn btn-success btn-xs" @click.prevent="showModalProduct(product.id, 'AddProductModal')">
+															<em class="fa fa-plus"></em> 
+														</button>
+														<button  v-show="product.hasList" class="btn btn-info btn-xs" @click.prevent="showModalProduct(product.id, 'AddProductModal')">
+															<em class="fa fa-edit"></em> 
+														</button>
+														<button v-show="product.hasList" class="btn btn-danger btn-xs" @click.prevent="removeProduct(product.id)">
+															<em class="fa fa-trash-o"></em> 
+														</button>	
 													</td>
 												</tr>
 											</tbody>
@@ -147,12 +146,12 @@
 												<td>{{ product.presentation }}</td>
 												<td>{{ product.description }}</td>
 												<td>C$ {{ product.unit_price }}</td>
-												<td>{{ product.existence }} und</td>	
-												<td>{{ product.existence }} und</td>	
-												<td>{{ product.existence }} und</td>	
-												<td>{{ product.existence }} und</td>		
+												<td>{{ product.quantity }} und</td>	
+												<td>{{ product.subtotal }}</td>	
+												<td>{{ product.tax }}</td>	
+												<td>{{ product.total }}</td>		
 												<td class="action">
-													<button class="btn btn-info btn-sm" @click.prevent="addProduct(product.id)">
+													<button class="btn btn-info btn-xs" @click.prevent="addProduct(product.id)">
 														<em class="fa fa-plus"></em> 
 													</button>
 												</td>
@@ -174,6 +173,37 @@
 				<!-- /.box -->
 			</div>
 		</div>
+		<!-- MODAL ADD QUANTITY  -->
+		<div class="modal fade" id="AddProductModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="modal-title text-success" id="exampleModalLabel">{{ productDescriptionModal }}</span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="m-top">
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<div class="col-md-12">
+										<label for="quantity" class="control-label col-md-3">Escribe la cantidad</label>
+										<div class="col-md-8">
+											<input type="number" class="form-control" v-model="selectedQuantity" id="quantity"></input>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secundary" data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-success" @click.prevent="addProduct('AddProductModal')">Agregar</button>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </template>
 
@@ -189,7 +219,7 @@
 		text-align: center;   
 	}		
 	.action{
-		width: 90px;
+		width: 100px;
 	}
 	.card{
 		border-radius: 2%;
