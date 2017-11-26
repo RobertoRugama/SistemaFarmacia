@@ -85,9 +85,9 @@
 														<button class="btn btn-success btn-xs" @click.prevent="showModalProduct(product.id, 'AddProductModal')">
 															<em class="fa fa-plus"></em> 
 														</button>
-														<button  v-show="product.hasList" class="btn btn-info btn-xs" @click.prevent="showModalProduct(product.id, 'AddProductModal')">
+														<!-- <button  v-show="product.hasList" class="btn btn-info btn-xs" @click.prevent="showModalProduct(product.id, 'AddProductModal')">
 															<em class="fa fa-edit"></em> 
-														</button>
+														</button> -->
 														<button v-show="product.hasList" class="btn btn-danger btn-xs" @click.prevent="removeProduct(product.id)">
 															<em class="fa fa-trash-o"></em> 
 														</button>	
@@ -113,13 +113,19 @@
 									
 								<div class="col-md-12 card text-info lead">
 								    <div class="col-md-12">
-										Subtotal: C$ {{ subtotal }}
+										Subtotal: C$ {{ parseFloat(Math.round(subtotal * 100) / 100).toFixed(2) }}
 									</div>
 									<div class="col-md-12">
-										Impuesto: C$ {{ tax }}
+										Impuesto: C$ {{ parseFloat(Math.round(tax * 100) / 100).toFixed(2) }}
 									</div>
 									<div class="col-md-12">
-										Total: C$ {{ total }}
+										Total: C$ {{ parseFloat(Math.round(total * 100) / 100).toFixed(2) }}
+									</div>
+									<div class="col-md-12">	
+									    <br>
+										<div class="col-md-4 pull-left">
+											<input type="button" :disabled="data.products.length == 0" @click.prevent="invoiceProducts" class="btn btn-success" value="Facturar">
+										</div>
 									</div>
 								</div>
 								

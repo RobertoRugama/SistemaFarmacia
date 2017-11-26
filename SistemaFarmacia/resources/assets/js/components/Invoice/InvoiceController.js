@@ -78,33 +78,37 @@ export default {
             vm.buildProductJson(vm.selectedProductId, vm.selectedQuantity);
             vm.hideModal(modalId);
         },
-
         buildProductJson: function(productId, quantity){
             
             let selectedProduct = this.data.products.filter(function(item){
                 return productId == item.id;
             })[0];
+
             if(selectedProduct == null){
                 selectedProduct = this.records.products.filter(function(product){
                     return product.id == productId;
                 })[0];
-                this.data.products.push(selectedProduct);
-                selectedProduct.quantity = parseInt(quantity);
+                selectedProduct.quantity = parseInt(quantity);             
             }else{
                 selectedProduct.quantity += parseInt(quantity);
+                for(var index in this.data.products){
+                    if(this.data.products[index].id == productId){
+                        this.data.products.splice(index, 1);
+                        break;
+                    }
+                }
             }
-
             selectedProduct.subtotal = selectedProduct.quantity * selectedProduct.unit_price;
             selectedProduct.tax = selectedProduct.subtotal * 0.15;
             selectedProduct.total = selectedProduct.subtotal + selectedProduct.tax;
-            this.hasProductInList(this.data.products);
+            this.data.products.push(selectedProduct);
             this.selectedQuantity = '';
+            this.hasProductInList(this.data.products);
         },
         removeProduct: function(id){
             this.data.products = this.data.products.filter(function(product){
                 return product.id != id;
             });
-            //this.data.products.push(selectedProduct[0]);
             this.hasProductInList(this.records.products);
         },
         showModalProduct: function(productId, modalId){
@@ -115,23 +119,66 @@ export default {
             this.productDescriptionModal = filterProduct.name + ' en ' + filterProduct.presentation + ', ' + filterProduct.description;
             this.renderModal(modalId);
         },
-        invoiceProducts: function() {
+        buildInvoiceProductsJson: function(products){
+            var productJson = [];
+            for(var index in products){
+                productJson.push({
+                    id: products[index].id,
+                    unitPrice: products[index].unit_price,
+                    quantity: products[index].quantity,
+                    subtotal: products[index].subtotal,
+                    tax: products[index].tax,
+                    total: products[index].total,
+                });
+            }
+            return productJson;
         },
+        invoiceProducts: function() {
+            var vm = this;
+            console.log(JSON.stringify(vm.buildInvoiceProductsJson(vm.data.products)))
+            vm.show = true;
+            setTimeout(() => {
+                  axios.post('/Invoice', {
+                      selectedEmployeeId: vm.data.selectedEmployeeId,
+                      customerName: vm.data.customerName,
+                      products: vm.buildInvoiceProductsJson(vm.data.products),
+                      generalSubtotal: vm.subtotal,
+                      generalTax: vm.tax,
+                      generalTotal: vm.total,
+                  })
+                 .then( (res) => {
+                      this.resetCallback()
+                      alert('facturado...')
+                      vm.show = false;
+                 })
+                 .catch( (err) => {                 
+                      vm.show = false;
+                      alert(err)
+                  //    vm.showMessage('Error', vm.generalError, vm.error);
+                 });
+            }, vm.timeOut);
+         },
         resetCallback: function(){
-            this.cleanFields()
-           // this.pagination.current_page = 1;
-           // this.getDataForShow(this.pagination.current_page);
+           this.cleanFields()
+           this.pagination.current_page = 1;
+           this.getDataForShow(this.pagination.current_page);
         },
         cleanFields: function() {
-           // this.comment = '';
+            this.data.products = [];
+            this.records.products = [];
+            this.isRunFirst = true
+            this.records.customerName = ''
         },   
         hasProductInList: function(products){
             if(this.data.products.length > 0){
+                var count = -1;
                 for(var i = 0; i < this.data.products.length; i++){
                     for(var j = 0; j < products.length; j++){
                         if(products[j].id == this.data.products[i].id){
                             products[j].hasList = true;
-                            break;
+                            count = j;
+                        }else if(j > count){
+                            products[j].hasList = false;
                         }
                     }
                 }
@@ -145,8 +192,8 @@ export default {
     computed:{
         subtotal: function(){
             var subtotal = 0.0;
-            for(var i = 0; i < this.data.products.length; i++){
-                subtotal += this.data.products[i].unit_price;
+            for(var index in this.data.products){
+                subtotal += this.data.products[index].unit_price * this.data.products[index].quantity;
             }
             return subtotal;
         },
