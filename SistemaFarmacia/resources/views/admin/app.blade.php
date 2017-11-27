@@ -13,6 +13,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{ asset ('adminlte/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
+<!-- boostrap Select -->
+<link rel="stylesheet" href="{{ asset ('adminlte/bower_components/select/css/bootstrap-select.min.css')}}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset ('adminlte/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
@@ -210,7 +212,7 @@ desired effect
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Pedidos</a></li>
+            <li><a href="{{route('purchase.index')}}">Pedidos</a></li>
             <li><a href="#">Devoluciones</a></li>
           </ul>
         </li>
@@ -355,7 +357,11 @@ desired effect
 <!-- jQuery 3 -->
 <script src="{{ asset ('adminlte/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- Bootstrap 3.3.7 -->
+
 <script src="{{ asset ('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset ('adminlte/bower_components/select/js/bootstrap-select.min.js')}}"></script>
+<script src="{{ asset('js/jquery.min.js')}}"></script>
+@stack('script')
 <!-- AdminLTE App -->
 <script src="{{ asset ('adminlte/js/adminlte.min.js')}}"></script>
  <script src="{{ asset ('adminlte/SweetAlert/sweetalert.min.js') }}"></script>

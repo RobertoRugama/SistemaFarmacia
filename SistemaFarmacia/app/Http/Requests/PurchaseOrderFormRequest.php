@@ -21,10 +21,23 @@ class PurchaseOrderFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+        public function rules()
     {
         return [
+        'id'=>'required|max:14',
+        'name'=>'required',
+        'address'=>'max:250',
+
             //
+
         ];
     }
+
+    public function messages(){
+     return [
+         'ruc' => 'este campo debe ser solo numerico',
+         'name.min' => 'porfavor verifique el campo',
+         'address.max' => 'El campo title no puede tener más de 255 carácteres',
+     ];
+ }
 }

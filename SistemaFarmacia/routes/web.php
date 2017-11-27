@@ -34,6 +34,7 @@ Route::resource('product','ProductController');
 Route::resource('charge', 'ChargeController');
 Route::resource('employee', 'EmployeeController');
 Route::resource('detailproduct', 'DetailProductController');
+Route::resource('purchase', 'PurchaseOrderController');
 
 Route::prefix('Invoice')->group(function() {
 	Route::get('/', 'InvoiceController@index')->name('invoices');

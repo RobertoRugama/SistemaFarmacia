@@ -13,7 +13,7 @@ class purchaseFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,14 @@ class purchaseFormRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+       return [
             //
+        'order_date'=>'required',
+        'requiered_date'=>'required',
+        'date_of_delivery'=>'required',
+        'status'=>'required',
+        'provider_id'=>'required',
+        'employee_id'=>'required',     
         ];
     }
 }

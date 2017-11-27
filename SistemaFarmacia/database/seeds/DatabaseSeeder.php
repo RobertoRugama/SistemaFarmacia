@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
         $roberto = Db::table('users')->insertGetId(
             [
                 'name'=>'roberto',
-                'email'=>'hrugama01@gmail.com',
-                'password' => bcrypt('rhernandez123!'),
+                'email'=>'roberto.rugama01@gmail.com',
+                'password' => bcrypt('Rugama!23'),
                 'remember_token' => str_random(10),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

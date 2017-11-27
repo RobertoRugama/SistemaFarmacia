@@ -19,7 +19,7 @@
                     @endif
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h3 class="page-header">Editar Empleado {{$employee->name}}</h3>
+                      <h3 class="page-header">Editar Empleado {{$employee->name}}</h3>
                          {!!Form::model($employee,['method'=>'PATCH','route'=>['employee.update',$employee->id]]) !!}
                         {{Form::token()}}
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">

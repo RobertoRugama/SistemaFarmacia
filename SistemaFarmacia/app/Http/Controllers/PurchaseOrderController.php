@@ -3,16 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\PurchaseOrder;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\PurchaseOrderFormRequest;
-use SistemaFarmacia\App\Http\Requests;
-use \App\PurchaseOrder;
+use App\Http\Requests\PurchaseFormRequest;
 use App\Http\Controllers\Session;
-use App\Http\Requests\TaskRequest;
-
 use DB;
 use Exception;
-use Alert; 
+use Alert;
 
 class PurchaseOrderController extends Controller
 {
@@ -23,12 +20,11 @@ class PurchaseOrderController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request) {
-            $query=trim($request ->get('searchText'));
-            $purchase=DB::table('purchase_orders')->where('name','LIKE','%'.$query.'%')
-            ->where('status','=','1')
-            ->orderBy('id','desc')->paginate(7);
-            return view('provider.index',["providers"=>$providers,"searchText"=>$query]);
+          if($request){
+           $purchases = PurchaseOrder::where('status','=','1')->orderBy('id', 'desc')->paginate(7);
+           return view("purchase.index",[
+                            "purchases"   =>  $purchases
+                    ]);
         }
     }
 
@@ -38,8 +34,15 @@ class PurchaseOrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $product = DB::table('products')->where('status','=','1')->get();
+        $provider =DB::table('providers')->where('status','=','1')->get();
+        $employee =DB::table('employees')->where('status','=','1')->get();
+        return view("purchase.create",[
+                          "products"=>$product,
+                          "providers"=>$provider,
+                          "employees"=>$employee                     
+                  ]);
     }
 
     /**
@@ -50,7 +53,27 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+     try {
+            $purchase = new PurchaseOrder;
+            $purchase->order_date = $request->get('order_date');
+            $purchase->required_date = $request->get('required_date');
+            $purchase->date_of_delivery = $request->get('date_of_delivery');
+            $purchase->status=1;
+            $purchase->provider_id = $request->get('provider_id');
+            $purchase->employee_id = $request->get('employee_id');
+                    
+            if ($purchase->save()) {
+                Alert::success('Success Message','se ha Guardado la Orden de Compra')->persistent('Close');
+                        return Redirect('purchase');
+            }else{
+                Alert::Warning('Warning Message', 'No se pudo Guardar la Orden de Compra')->persistent('Close');
+                        return Redirect('purchase');
+            }
+                    
+        } catch (Exception $e) {
+            Alert::error('Error Message','ha ocurrido un error al Registrar la Compra'.$e)->persistent('Close'); 
+                    return redirect()->route('purchase.create');      
+                }
     }
 
     /**
@@ -61,7 +84,14 @@ class PurchaseOrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $purchase  =  PurchaseOrder::findOrFail($id);
+        $providers =  DB::table('providers')->where('status','=','1')->get();
+        $employees =  DB::table('employees')->where('status','=','1')->get();
+        return view("purchase.show",[
+                                    "purchases" =>  $purchase,
+                                    "providers" =>  $providers,
+                                    "employees" =>  $employees,                                  
+                ]);   
     }
 
     /**
@@ -72,7 +102,14 @@ class PurchaseOrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $purchase  =  PurchaseOrder::findOrFail($id);
+        $providers =  DB::table('providers')->where('status','=','1')->get();
+        $employees =  DB::table('employees')->where('status','=','1')->get();
+        return view("purchase.edit",[
+                                    "purchases" =>  $purchase,
+                                    "providers" =>  $providers,
+                                    "employees" =>  $employees,                                  
+                ]);  
     }
 
     /**
@@ -84,7 +121,28 @@ class PurchaseOrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $purchase = PurchaseOrder::findOrFail($id);
+            $purchase->order_date = $request->get('order_date');
+            $purchase->required_date = $request->get('required_date');
+            $purchase->date_of_delivery = $request->get('date_of_delivery');
+            $purchase->status=1;
+            $purchase->employee_id = $request->get('employee_id');
+            $purchase->provider_id = $request->get('provider_id');
+            if ($purchase->update()) {
+                Alert::success('Success Message','se ha Modificado la Orden de Compra')->persistent('Close');
+                return Redirect('purchase');
+            }else{
+                Alert::Warning('Warning Message', 'No se pudo Modificar la Orden de Compra')->persistent('Close');
+                return Redirect('purchase');
+            }
+            
+        } catch (Exception $e) {
+            Alert::error('Error Message','ha ocurrido un error al Registrar la Compra'.$e)->persistent('Close'); 
+            return redirect()->route('purchase.create');
+
+            
+        }
     }
 
     /**
@@ -95,6 +153,19 @@ class PurchaseOrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $purchase = PurchaseOrder::findOrFail($id);
+            $purchase->status=0;
+            if($purchase->update()){
+                Alert::success('Success Message', 'El Producto ha sido Eliminado!!!');
+                return redirect("purchase");
+            }else{
+                Alert::warning('Warning Message','No se pudo eliminar el Registro');
+                return redirect('purchase');
+            }
+        }catch(Exception $e){
+            Alert::error('Error Message','No se pudo eliminar el Registro');
+                return redirect('purchase');
+        }
     }
 }

@@ -39,9 +39,9 @@ class ProviderController extends Controller
       try{
          $provider = new Provider;
          $provider ->status=1;
-	   	$provider->ruc = $request->get('ruc');
-	   	$provider->name= $request->get('name');
-	   	$provider->address= $request->get('address');
+          $provider->ruc = $request->get('ruc');
+          $provider->name= $request->get('name');
+          $provider->address= $request->get('address');
          $provider->url= $request->get('url');
          if ($provider->save()) {
             Alert::success('Success Message', 'Guardado con exito')->persistent('Close'); 
